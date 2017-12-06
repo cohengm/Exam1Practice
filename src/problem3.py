@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 3.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Geoffrey Cohen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -105,6 +105,24 @@ def run_test_problem3a():
 
 
 def problem3a(window, point, n):
+
+    sum=1
+    total = 0
+    for k in range(n):
+        top = rg.Point(point.x+20*k,point.y+10*k)
+        bottom = rg.Point(point.x+20*k,point.y+10*k+50)
+        line = rg.Line(top, bottom)
+        if sum < 13:
+            sum = 1 + 2*k
+            total = total +sum
+            line.thickness = sum
+        else:
+            line.thickness = 13
+            total = total + 13
+        line.attach_to(window)
+        window.render()
+    return total
+
     """
     See   problem3a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -150,21 +168,41 @@ def problem3a(window, point, n):
 def run_test_problem3b():
     """ Tests the   problem3b   function. """
     # Test 1 is ALREADY DONE (here).
+    window1 = rg.RoseWindow(400,650)
     expected = 158
-    answer = problem3b(4, rg.Point(100, 50))
+    answer = problem3b(4, rg.Point(100, 50),window1)
     print()
     print('Test 1 expected:', expected)
     print('       actual:  ', answer)
+    window1.close_on_mouse_click()
+
 
     # Test 2 is ALREADY DONE (here).
+    window2 = rg.RoseWindow(400,650)
     expected = 539
-    answer = problem3b(7, rg.Point(30, 30))
+    answer = problem3b(7, rg.Point(30, 30),window2)
     print()
     print('Test 2 expected:', expected)
     print('       actual:  ', answer)
+    window2.close_on_mouse_click()
 
 
-def problem3b(m, point1):
+def problem3b(m, point1,window):
+
+    sum=1
+    total = 0
+    for k in range(m):
+        top = rg.Point(point1.x, point1.y+60*k)
+        bottom = rg.Point(point1.x, point1.y+50+60*k)
+        line = rg.Line(top,bottom)
+        line.attach_to(window)
+        problem3a(window, top, 2*(k+1)+1)
+        total = total + problem3a(window,top, 2*(k+1)+1)
+    window.render()
+    return total
+
+
+
     """
     See   problem3b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:

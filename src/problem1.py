@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 1.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Geoffrey Cohen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -25,6 +25,7 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 #    on it, in class or via Piazza.
 ########################################################################
 
+import math
 
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -92,7 +93,7 @@ def sum_of_digits(number):
 def run_test_problem1a():
     """ Tests the   problem1a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DEON: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   4   ** tests (we wrote two for you).
     # ------------------------------------------------------------------
@@ -120,6 +121,20 @@ def run_test_problem1a():
     print('Test 2 expected:', expected, '(approximately)')
     print('       actual:  ', answer)
 
+    # Test 3:
+    expected = 0  # This is APPROXIMATELY the correct answer.
+    answer = problem1a(0, 0)
+    print()
+    print('Test 3 expected:', expected, '(approximately)')
+    print('       actual:  ', answer)
+
+    # Test 4:
+    expected = math.sin(1)  # This is APPROXIMATELY the correct answer.
+    answer = problem1a(0, 1)
+    print()
+    print('Test 2 expected:', expected, '(approximately)')
+    print('       actual:  ', answer)
+
     # ------------------------------------------------------------------
     # TO DO: 2 (continued).
     # Below this comment, add 2 more test cases of your own choosing.
@@ -127,6 +142,12 @@ def run_test_problem1a():
 
 
 def problem1a(m, n):
+
+    sum = 0
+    for k in range(n**2-m**2+1):
+        sum = sum + math.sin(n**2-k)
+    return sum
+
     """
     What comes in:  Integers m and n with abs(m) <= abs(n).
     What goes out:
@@ -144,7 +165,7 @@ def problem1a(m, n):
       -- If m is 30 and n is 100, the correct answer is about 1.278.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -157,7 +178,7 @@ def problem1a(m, n):
 def run_test_problem1b():
     """ Tests the   problem1b   function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # DONE: 4. Implement this TEST function.
     #   It TESTS the  problem1b  function defined below.
     #   Include at least **   4   ** tests.
     # ------------------------------------------------------------------
@@ -171,8 +192,39 @@ def run_test_problem1b():
     print('Testing the   problem1b   function:')
     print('--------------------------------------------------')
 
+    expected = 2
+    answer = problem1b(1,2)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 4
+    answer = problem1b(1,5)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 4
+    answer = problem1b(1,6)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 5
+    answer = problem1b(1,7)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
 
 def problem1b(m, f):
+
+    count = 0
+    for k in range(f*m-m+1):
+        if is_prime(f*m-k) == True:
+            count = count +1
+    return (count)
+
     """
     What comes in:  Positive integers m and f such that m >= 2.
     What goes out:
@@ -189,7 +241,7 @@ def problem1b(m, f):
            since there are 44 primes between 5 and 200.
      """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     ####################################################################
@@ -262,6 +314,17 @@ def run_test_problem1c():
 
 
 def problem1c(n):
+
+    sum = 1
+    for k in range(n-1):
+        if is_prime(2+k) == True:
+            sum = sum * (2+k)
+
+    return sum_of_digits(sum)
+
+
+
+
     """
     What comes in:  An integer n >= 2.
     What goes out:
@@ -286,7 +349,7 @@ def problem1c(n):
            and the sum of the digits in 223092870 is 33.
     """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # DONE: 6. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################

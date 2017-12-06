@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Geoffrey Cohen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -73,6 +73,26 @@ def run_test_problem2a():
 
 
 def problem2a(circle, rectangle, window):
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+
+    window.continue_on_mouse_click()
+
+    arrow = rg.Line(rectangle.get_upper_right_corner(),rectangle.get_lower_left_corner())
+    arrow.arrow = "last"
+    arrow.attach_to(window)
+
+    window.render()
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+
+    window.render()
+
+
+
     """
     See   problem2a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -102,7 +122,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -143,7 +163,18 @@ def run_test_problem2b():
     window.close_on_mouse_click()
 
 
-def problem2b(rect, n, delta, win):
+def problem2b(rectangle, n, delta, window):
+
+    rectangle.attach_to(window)
+
+    for k in range(n):
+        point1 = rg.Point(rectangle.get_center().x+rectangle.get_width()/2+delta*(n-k),rectangle.get_center().y+rectangle.get_height()/2+delta*(n-k))
+        point2 = rg.Point(rectangle.get_center().x-rectangle.get_width()/2-delta*(n-k),rectangle.get_center().y-rectangle.get_height()/2-delta*(n-k))
+        rectangle1 = rg.Rectangle(point1,point2)
+        rectangle1.attach_to(window)
+
+        window.render()
+
     """
     See   problem2b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -173,7 +204,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
